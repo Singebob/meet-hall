@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to scratch-overflow 👋</h1>
+<h1 align="center">Welcome to scratch-overflow-backend 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/ClementFassot" target="_blank">
@@ -6,15 +6,32 @@
   </a>
 </p>
 
-> An open-source platform for students to organise talks, training sessions and codelabs as after school activities
+> Backend for scratch-overflow
 
+## Install
+
+```sh
+npm i
+```
+
+## Usage
+
+```sh
+npm run dev
+```
+
+## Run tests
+
+```sh
+npm run test
+```
 
 ## Author
 
 👤 **Ked57**
 
 * Twitter: [@ClementFassot](https://twitter.com/ClementFassot)
-* Github: [@Ked57](https://github.com/ked57)
+* Github: [@Ked57](https://github.com/Ked57)
 
 ## 🤝 Contributing
 
