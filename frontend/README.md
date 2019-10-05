@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to scratch-overflow-frontend 👋</h1>
+<h1 align="center">Welcome to meet-hall-frontend 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/ClementFassot" target="_blank">
@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> Frontend for scratch-overflow
+> Frontend for meet-hall
 
 ## Install
 
