@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to scratch-overflow 👋</h1>
+<h1 align="center">Welcome to Meet-Hall 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/ClementFassot" target="_blank">
@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> An open-source platform for students to organise talks, training sessions and codelabs as after school activities
+> An open-source platform for anybody to organise talks, training sessions and codelabs
 
 
 ## Author
