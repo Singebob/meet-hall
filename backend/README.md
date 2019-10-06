@@ -6,6 +6,8 @@
   </a>
 </p>
 
+[![CircleCI](https://circleci.com/gh/Ked57/meet-hall.svg?style=svg)](https://circleci.com/gh/Ked57/meet-hall)
+
 > Backend for meet-hall
 
 ## Install
