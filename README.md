@@ -18,6 +18,11 @@
 * Twitter: [@ClementFassot](https://twitter.com/ClementFassot)
 * Github: [@Ked57](https://github.com/ked57)
 
+👤 **Shyndard**
+
+* Twitter: [@Shyndard](https://twitter.com/shyndard)
+* Github: [@Shyndard](https://github.com/Shyndard)
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Ked57/scratch-overflow/issues).
