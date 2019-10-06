@@ -5,7 +5,6 @@ import { config } from "./config";
 import { initUtilMiddlewares } from "./middlewares/util-middlewares";
 import { initPostGraphileMiddleware } from "./middlewares/postgraphile-middleware";
 
-
 const getServerPort = (address: string | AddressInfo | null) =>
   address && typeof address !== "string"
     ? address.port
