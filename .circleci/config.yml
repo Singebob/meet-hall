@@ -14,10 +14,8 @@ jobs:
     steps:
       - checkout
       - run: 
-        command: |
-          cd << parameters.app >>
-          npm ci
-          cd ../
+          command: npm ci
+          working_directory: ./<< parameters.app >>
       - persist_to_workspace:
           root: ./
           paths:
@@ -33,9 +31,21 @@ jobs:
       - attach_workspace:
           at: ./
       - run: 
-        command:
-          cd << parameters.app >>
-          npm run format:check
+          command: npm run format:check
+          working_directory: ./<< parameters.app >>
+  
+  lint:
+    executor: main-executor
+    parameters:
+      app:
+        type: string
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: 
+          command: npm run lint
+          working_directory: ./<< parameters.app >>
 
   build:
     executor: main-executor
@@ -47,9 +57,8 @@ jobs:
       - attach_workspace:
           at: ./
       - run: 
-        command:
-          cd << parameters.app >>
-          npm run build
+          command: npm run build        
+          working_directory: ./<< parameters.app >>
       - persist_to_workspace:
           root: ./
           paths:
@@ -88,11 +97,21 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - lint:
+          app: frontend
+          name: frontend-lint
+          requires:
+            - frontend-install-dependencies
+          filters:
+            tags:
+              only: /.*/
       - build:
           name: frontend-build
           app: frontend
           requires:
             - frontend-install-dependencies
+            - frontend-lint
+            - frontend-check-format
           filters:
             tags:
               only: /.*/
@@ -101,6 +120,7 @@ workflows:
           app: backend
           requires:
             - backend-install-dependencies
+            - backend-check-format
           filters:
             tags:
               only: /.*/
