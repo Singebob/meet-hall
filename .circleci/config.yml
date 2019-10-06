@@ -62,39 +62,45 @@ workflows:
     jobs:
       - install-dependencies:
           app: frontend
+          name: frontend-install-dependencies
           filters:
             tags:
               only: /.*/
       - install-dependencies:
           app: backend
+          name: backend-install-dependencies
           filters:
             tags:
               only: /.*/
       - check-format:
           app: frontend
+          name: frontend-check-format
           requires:
-            - install-dependencies
+            - frontend-install-dependencies
           filters:
             tags:
               only: /.*/
       - check-format:
+          name: backend-check-format
           app: backend
           requires:
-            - install-dependencies
+            - backend-install-dependencies
           filters:
             tags:
               only: /.*/
       - build:
+          name: frontend-build
           app: frontend
           requires:
-            - install-dependencies
+            - frontend-install-dependencies
           filters:
             tags:
               only: /.*/
       - build:
+          name: backend-build
           app: backend
           requires:
-            - install-dependencies
+            - backend-install-dependencies
           filters:
             tags:
               only: /.*/
