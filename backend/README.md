@@ -10,6 +10,12 @@
 
 > Backend for meet-hall
 
+## Init the database 
+
+```sh
+docker-compose up -d
+```
+
 ## Install
 
 ```sh

@@ -10,6 +10,28 @@
 
 > An open-source platform for anybody to organise talks, training sessions and codelabs
 
+## Quick start
+
+Set the env variables defined in the .env.example in the backend folder
+
+To run the backend
+
+```sh
+cd backend
+docker-compose up -d
+npm install
+npm run dev
+```
+More details [here](https://github.com/Ked57/meet-hall/blob/master/backend/README.md)
+
+To run the front end
+
+```sh
+cd frontend
+npm run serve
+```
+
+More details [here](https://github.com/Ked57/meet-hall/blob/master/frontend/README.md)
 
 ## Author
 
