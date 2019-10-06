@@ -17,6 +17,8 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/koa": "^2.0.50",
+    "@types/koa-helmet": "^3.1.2",
+    "@types/koa__cors": "^2.2.3",
     "@types/node": "^12.7.4",
     "ava": "^2.3.0",
     "dotenv": "^8.1.0",
@@ -26,9 +28,13 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
+    "@koa/cors": "^3.0.0",
     "apollo-server-fastify": "^2.9.3",
     "fastify": "^2.8.0",
     "koa": "^2.8.2",
+    "koa-helmet": "^5.1.0",
+    "pg": "^7.12.1",
     "postgraphile": "^4.4.4"
   }
 }
