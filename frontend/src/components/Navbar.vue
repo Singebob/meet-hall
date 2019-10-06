@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-info">
+  <nav class="navbar is-primary">
     <div id="navbarExampleTransparentExample" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item" @click="onHomeButtonClicked">Accueil</a>
@@ -42,7 +42,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#menu {
-  margin: auto;
+.navbar.is-primary .navbar-start > .navbar-item,
+.navbar-menu {
+  color: #ffffff;
+  background-color: #1976d2;
+}
+.navbar.is-primary .navbar-start > .navbar-item:hover {
+  color: #ffffff;
+  background-color: #004ba0;
 }
 </style>
