@@ -18,7 +18,9 @@ CREATE TABLE "event" (
 	"description" VARCHAR(2000),
 	"date" TIMESTAMP,
 	"location" VARCHAR(100),
-	"arviched" boolean default false
+	"arviched" boolean default false,
+	"organization_uuid" UUID,
+	FOREIGN KEY (organization_uuid) REFERENCES "organization" (uuid)
 );
 
 CREATE TABLE "role" (
@@ -102,8 +104,8 @@ CREATE TABLE user_tag (
 	FOREIGN KEY (tag_uuid) REFERENCES tag (uuid)
 );
 
-CREATE USER postgraphile_data_management WITH PASSWORD '${POSTGRAPHILE_DATA_MANAGEMENT_USER_PASSWORD}';
-CREATE USER postgraphile_full_access WITH PASSWORD '${POSTGRAPHILE_FULL_ACCESS_USER_PASSWORD}';
+CREATE USER ${POSTGRAPHILE_DATA_MANAGEMENT_USER_NAME} WITH PASSWORD '${POSTGRAPHILE_DATA_MANAGEMENT_USER_PASSWORD}';
+CREATE USER ${POSTGRAPHILE_FULL_ACCESS_USER_NAME} WITH PASSWORD '${POSTGRAPHILE_FULL_ACCESS_USER_PASSWORD}';
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO postgraphile_data_management;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO postgraphile_full_access;
