@@ -1,0 +1,100 @@
+version: 2.1
+
+executors:
+  main-executor:
+    docker:
+      - image: circleci/node:lts
+
+jobs:
+  install-dependencies:
+    executor: main-executor
+    parameters:
+      app:
+        type: string
+    steps:
+      - checkout
+      - run: 
+        command: |
+          cd << parameters.app >>
+          npm ci
+          cd ../
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - << parameters.app >>/node_modules
+
+  check-format:
+    executor: main-executor
+    parameters:
+      app:
+        type: string
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: 
+        command:
+          cd << parameters.app >>
+          npm run format:check
+
+  build:
+    executor: main-executor
+    parameters:
+      app:
+        type: string
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: 
+        command:
+          cd << parameters.app >>
+          npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - << parameters.app >>/dist
+
+workflows:
+  version: 2
+
+  deploy:
+    jobs:
+      - install-dependencies:
+          app: frontend
+          filters:
+            tags:
+              only: /.*/
+      - install-dependencies:
+          app: backend
+          filters:
+            tags:
+              only: /.*/
+      - check-format:
+          app: frontend
+          requires:
+            - install-dependencies
+          filters:
+            tags:
+              only: /.*/
+      - check-format:
+          app: backend
+          requires:
+            - install-dependencies
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          app: frontend
+          requires:
+            - install-dependencies
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          app: backend
+          requires:
+            - install-dependencies
+          filters:
+            tags:
+              only: /.*/
