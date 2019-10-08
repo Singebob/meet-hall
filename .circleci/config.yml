@@ -3,7 +3,10 @@ version: 2.1
 executors:
   main-executor:
     docker:
-      - image: circleci/node:lts
+      - image: cypress/browsers
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
 
 jobs:
   install-dependencies:
@@ -13,13 +16,20 @@ jobs:
         type: string
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "<< parameters.app >>/package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
       - run: 
           command: npm ci
           working_directory: ./<< parameters.app >>
-      - persist_to_workspace:
-          root: ./
+      - save_cache:
+          key: v2-deps-{{ .Branch }}-{{ checksum "<< parameters.app >>/package.json" }}
           paths:
+            - ~/.cache  ## cache both yarn and Cypress!
             - << parameters.app >>/node_modules
+      
 
   check-format:
     executor: main-executor
@@ -28,8 +38,11 @@ jobs:
         type: string
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "<< parameters.app >>/package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
       - run: 
           command: npm run format:check
           working_directory: ./<< parameters.app >>
@@ -41,11 +54,27 @@ jobs:
         type: string
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "<< parameters.app >>/package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
       - run: 
           command: npm run lint
           working_directory: ./<< parameters.app >>
+  
+  frontend-test:
+    executor: main-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "frontend/package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
+      - run: 
+          command: npm run test:e2e:ci
+          working_directory: ./frontend
 
   build:
     executor: main-executor
@@ -54,8 +83,11 @@ jobs:
         type: string
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "<< parameters.app >>/package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
       - run: 
           command: npm run build        
           working_directory: ./<< parameters.app >>
@@ -100,6 +132,13 @@ workflows:
       - lint:
           app: frontend
           name: frontend-lint
+          requires:
+            - frontend-install-dependencies
+          filters:
+            tags:
+              only: /.*/
+      - frontend-test:
+          name: frontend-test
           requires:
             - frontend-install-dependencies
           filters:

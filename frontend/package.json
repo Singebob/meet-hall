@@ -6,9 +6,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prettier": "prettier .circleci/config.yml  src/{**/,}*.{ts,json} tests/{**/,}*.{ts,json}",
     "format:check": "npm run prettier -- --list-different",
-    "format:fix": "npm run prettier -- --write"
+    "format:fix": "npm run prettier -- --write",
+    "prettier": "prettier .circleci/config.yml  src/{**/,}*.{ts,json} tests/{**/,}*.{ts,json}",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:ci": "npm run test:e2e -- --headless --browser chrome"
   },
   "dependencies": {
     "bulma": "^0.7.5",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-pwa": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
@@ -27,6 +30,7 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "cypress": "^3.4.1",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",

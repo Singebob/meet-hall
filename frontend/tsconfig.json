@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
@@ -9,9 +9,12 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "allowJs": true,
     "baseUrl": ".",
+    "skipLibCheck": true,
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "cypress"
     ],
     "paths": {
       "@/*": [
@@ -19,6 +22,7 @@
       ]
     },
     "lib": [
+      "es5",
       "esnext",
       "dom",
       "dom.iterable",
