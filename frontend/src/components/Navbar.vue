@@ -2,9 +2,9 @@
   <nav class="navbar is-primary">
     <div id="navbarExampleTransparentExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" @click="onHomeButtonClicked">Accueil</a>
-        <a class="navbar-item">Demandes</a>
-        <a class="navbar-item">Evènements</a>
+        <a class="navbar-item" href="/">Accueil</a>
+        <a class="navbar-item" >Demandes</a>
+        <a class="navbar-item" href="/events">Evènements</a>
         <a class="navbar-item">Mes évènements</a>
       </div>
 
@@ -26,17 +26,7 @@
 
 <script>
 export default {
-  name: "Navbar",
-  methods: {
-    onHomeButtonClicked() {
-      this.$router.push({ path: "/" });
-    }
-  },
-  computed: {
-    menu() {
-      return this.$store.state.menu;
-    }
-  }
+  name: "Navbar"
 };
 </script>
 

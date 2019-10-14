@@ -13,8 +13,12 @@
     "test:e2e:ci": "npm run test:e2e -- --headless --browser chrome"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
     "bulma": "^0.7.5",
     "core-js": "^2.6.5",
+    "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
